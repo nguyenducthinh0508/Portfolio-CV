@@ -1,55 +1,65 @@
-import { motion } from 'framer-motion';
-import { SectionWrapper } from '../components/SectionWrapper';
 import { FadeIn } from '../components/FadeIn';
+import { AnimatedHeading } from '../components/AnimatedHeading';
+import { useLanguage } from '../i18n/LanguageContext';
 
 export function Hero() {
+  const { t } = useLanguage();
+
   return (
-    <SectionWrapper className="min-h-[90vh] flex flex-col justify-center relative pt-32 md:pt-40">
-      <div className="max-w-4xl">
-        <FadeIn delay={0.2} direction="up" duration={0.8}>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-100 border border-zinc-200 text-sm font-medium text-zinc-600 mb-8">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Available for new opportunities
-          </div>
-        </FadeIn>
-
-        <FadeIn delay={0.3} direction="up" duration={0.8}>
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-zinc-900 mb-6 leading-[1.05]">
-            Nguyễn Đức Thịnh
-          </h1>
-        </FadeIn>
-
-        <FadeIn delay={0.4} direction="up" duration={0.8}>
-          <p className="text-xl md:text-2xl text-zinc-500 font-light mb-10 max-w-2xl leading-relaxed">
-            A digital-first Marketer and Creative Strategist crafting practical, data-informed systems for the next generation of growth.
-          </p>
-        </FadeIn>
-
-        <FadeIn delay={0.5} direction="up" duration={0.8}>
-          <div className="flex flex-wrap items-center gap-4">
-            <a 
-              href="#projects" 
-              className="bg-zinc-900 text-zinc-50 px-8 py-3.5 rounded-full font-medium hover:bg-zinc-800 transition-colors shadow-sm"
-            >
-              View Projects
-            </a>
-            <a 
-              href="#contact" 
-              className="bg-white text-zinc-900 border border-zinc-200 px-8 py-3.5 rounded-full font-medium hover:bg-zinc-50 transition-colors shadow-sm"
-            >
-              Contact Me
-            </a>
-          </div>
-        </FadeIn>
-      </div>
-
-      {/* Decorative subtle element */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 2 }}
-        className="absolute top-1/2 right-0 -translate-y-1/2 w-[500px] h-[500px] bg-zinc-100 rounded-full blur-[100px] -z-10 pointer-events-none hidden lg:block"
+    <section className="relative min-h-screen flex flex-col justify-end px-6 md:px-12 lg:px-16 pb-12 lg:pb-16 overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260403_050628_c4e32401-fab4-4a27-b7a8-6e9291cd5959.mp4"
       />
-    </SectionWrapper>
+
+      <div className="lg:grid lg:grid-cols-2 lg:items-end w-full mx-auto z-10 relative">
+        {/* Left Column */}
+        <div className="mb-8 lg:mb-0">
+          <AnimatedHeading
+            text={t('hero.heading')}
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mb-4 break-keep whitespace-nowrap"
+          />
+
+          <FadeIn delayMs={800} durationMs={1000}>
+            <p className="text-base md:text-lg text-gray-300 mb-5 max-w-2xl">
+              {t('hero.subheading')}
+            </p>
+          </FadeIn>
+
+          <FadeIn delayMs={1200} durationMs={1000}>
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#projects"
+                className="bg-white text-black px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition-colors"
+              >
+                {t('hero.viewProjects')}
+              </a>
+              <a
+                href="/cv.pdf"
+                className="liquid-glass border border-white/20 text-white px-8 py-3 rounded-lg font-medium hover:bg-white hover:text-black transition-colors"
+              >
+                {t('hero.downloadCV')}
+              </a>
+            </div>
+          </FadeIn>
+        </div>
+
+        {/* Right Column */}
+        <div className="flex items-end justify-start lg:justify-end">
+          <FadeIn delayMs={1400} durationMs={1000}>
+            <div className="liquid-glass border border-white/20 px-6 py-3 rounded-xl">
+              <span className="text-lg md:text-xl lg:text-2xl font-light">
+                {t('hero.tag')}
+              </span>
+            </div>
+          </FadeIn>
+        </div>
+      </div>
+    </section>
   );
 }

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { FadeIn } from './FadeIn';
 
@@ -12,13 +11,12 @@ interface ProjectCardProps {
 
 export function ProjectCard({ title, description, tags, link, index }: ProjectCardProps) {
   return (
-    <FadeIn delay={0.1 * index} direction="up" className="h-full">
-      <motion.a 
+    <FadeIn delayMs={100 * index} durationMs={800} className="h-full">
+      <a 
         href={link || "#"}
         target="_blank"
         rel="noopener noreferrer"
-        className="group block h-full bg-white border border-zinc-200 rounded-2xl p-6 md:p-8 hover:border-zinc-300 hover:shadow-sm transition-all duration-300"
-        whileHover={{ y: -4 }}
+        className="group block h-full bg-white border border-zinc-200 rounded-2xl p-6 md:p-8 hover:border-zinc-300 hover:shadow-sm hover:-translate-y-1 transition-all duration-300"
       >
         <div className="flex justify-between items-start mb-4">
           <h3 className="text-xl font-semibold text-zinc-900">{title}</h3>
@@ -41,7 +39,7 @@ export function ProjectCard({ title, description, tags, link, index }: ProjectCa
             </span>
           ))}
         </div>
-      </motion.a>
+      </a>
     </FadeIn>
   );
 }
